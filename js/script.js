@@ -33,7 +33,7 @@ const addPageLinks = (list) => {
 
    paginationUl.firstChild.firstChild.className = 'active';
 
-   
+   const paginationLinks = paginationUl.querySelectorAll('a');
    paginationLinks.addEventListener('click', (e) => {
       for (let i=0; i<paginationLinks.length; i++) {
          if (paginationLinks[i].className === 'active') {
