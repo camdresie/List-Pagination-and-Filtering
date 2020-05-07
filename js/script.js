@@ -23,7 +23,7 @@ const showPage = (list, page) => {
    let startIndex = ((page * itemsPerPage) - itemsPerPage);
    let endIndex = (page * itemsPerPage);
    for (let i=0; i<list.length; i++) {
-      if (list[i] >= startIndex && list[i] < endIndex) {
+      if (i >= startIndex && i < endIndex) {
          list[i].style.display = 'block';
       } else {
          list[i].style.display = 'none';
@@ -31,7 +31,9 @@ const showPage = (list, page) => {
    }
 }
 
-showPage(studentList, 1);
+const createPagination = () => {
+   
+}
 
 
 
