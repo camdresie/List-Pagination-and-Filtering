@@ -20,29 +20,34 @@ const addPageLinks = (list) => {
    pageDiv.appendChild(paginationDiv);
    const paginationUl = document.createElement('ul');
    paginationDiv.appendChild(paginationUl);
-   let numberOfPages = studentList.length / itemsPerPage;
+   let numberOfPages = list.length / itemsPerPage;
    
-   for (let i=0; i<numberOfPages; i++) {
+   for (let i = 0; i < numberOfPages; i++) {
       const paginationLi = document.createElement('li');
       const paginationLink = document.createElement('a');
       paginationLink.href = '#';
       paginationLink.innerHTML = `${i + 1}`
       paginationLi.appendChild(paginationLink);
       paginationUl.appendChild(paginationLi);
+      
    }
 
    paginationUl.firstChild.firstChild.className = 'active';
-
+   console.log(paginationUl.firstChild.firstChild);
    const paginationLinks = paginationUl.querySelectorAll('a');
-   paginationLinks.addEventListener('click', (e) => {
-      for (let i=0; i<paginationLinks.length; i++) {
-         if (paginationLinks[i].className === 'active') {
+   for (i = 0; i < paginationLinks.length; i++) {
+      paginationLinks[i].addEventListener('click', (e) => {
+         for (i = 0; i < paginationLinks.length; i++) {
             paginationLinks[i].className = '';
+            }
+         const isClicked = e.target;
+         if (isClicked) {
+            isClicked.className = 'active';
+            showPage(list, isClicked.textContent);
          }
+         
+         });
       }
-   });
-
-
    }
-
+showPage(studentList, 1);
 addPageLinks(studentList);
