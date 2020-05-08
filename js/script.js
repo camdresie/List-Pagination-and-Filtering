@@ -35,6 +35,11 @@ const addPageLinks = (list) => {
    const paginationUl = document.createElement('ul');
    paginationDiv.appendChild(paginationUl);
    let numberOfPages = list.length / itemsPerPage;
+
+   /************ The first nested for loop in addPageLinks() cycles through and creates the appropriate number of 
+    * pages based on how many items are in the list that is passed into the function.
+   ************/
+
    for (let i = 0; i < numberOfPages; i++) {
       const paginationLi = document.createElement('li');
       const paginationLink = document.createElement('a');
@@ -43,6 +48,10 @@ const addPageLinks = (list) => {
       paginationLi.appendChild(paginationLink);
       paginationUl.appendChild(paginationLi);
    }
+
+   /************ The below section of addPageLinks() sets the first <li> class to active and then reassigns the 
+    * active class to whichever link a user clicks using an event listener.
+   ************/
    paginationUl.firstChild.firstChild.className = 'active';
    const paginationLinks = paginationUl.querySelectorAll('a');
    for (i = 0; i < paginationLinks.length; i++) {
