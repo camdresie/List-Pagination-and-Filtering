@@ -24,7 +24,7 @@ const showPage = (list, page) => {
 
 /************ The addPageLinks() function builds a dynamic section of HTML at the bottom of the page to be used
  * as a pagination navigation section. Each link is then dynamically assigned a value and displays the corresponding
- * to a page of items from the list parameter.
+ * page of items from the list parameter.
 ************/
 
 const addPageLinks = (list) => {
