@@ -5,14 +5,31 @@
 const studentList = document.querySelectorAll('.student-item');
 const itemsPerPage = 10;
 
+
+const createSearch = () => {
+   const headerDiv = document.querySelector('.page-header');
+   const searchDiv = document.createElement('div');
+   searchDiv.className = 'student-search';
+   headerDiv.appendChild(searchDiv);
+   const searchInput = document.createElement('input');
+   searchInput.placeholder = 'Search for students...';
+   searchDiv.appendChild(searchInput);
+   const searchButton = document.createElement('button');
+   searchButton.textContent = 'Search';
+   searchDiv.appendChild(searchButton);
+   console.log(searchDiv);
+}
+createSearch();
+
+
 /************ The showPage() function takes in a list and the initial page as its parameters. The function then 
  * defines a start index and end index dynamically using the provided parameters. The function then displays 
  * list items that are in the appropriate range and sets the display to none for list items outside the range.
 ************/
 
 const showPage = (list, page) => {
-   let startIndex = ((page * itemsPerPage) - itemsPerPage);
-   let endIndex = (page * itemsPerPage);
+   const startIndex = ((page * itemsPerPage) - itemsPerPage);
+   const endIndex = (page * itemsPerPage);
    for (let i=0; i<list.length; i++) {
       if (i >= startIndex && i < endIndex) {
          list[i].style.display = 'block';
@@ -34,7 +51,7 @@ const addPageLinks = (list) => {
    pageDiv.appendChild(paginationDiv);
    const paginationUl = document.createElement('ul');
    paginationDiv.appendChild(paginationUl);
-   let numberOfPages = list.length / itemsPerPage;
+   const numberOfPages = list.length / itemsPerPage;
 
    /************ The first nested for loop in addPageLinks() cycles through and creates the appropriate number of 
     * pages based on how many items are in the list that is passed into the function.
