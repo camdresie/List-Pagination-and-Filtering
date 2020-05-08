@@ -1,5 +1,14 @@
+/************ Global variables are declared. The only two global variable needed are the selected list and the number of items
+* to be displayed on each page. 
+************/
+
 const studentList = document.querySelectorAll('.student-item');
 const itemsPerPage = 10;
+
+/************ The showPage() function takes in a list and the initial page as its parameters. The function then 
+ * defines a start index and end index dynamically using the provided parameters. The function then displays 
+ * list items that are in the appropriate range and sets the display to none for list items outside the range.
+************/
 
 const showPage = (list, page) => {
    let startIndex = ((page * itemsPerPage) - itemsPerPage);
@@ -13,6 +22,11 @@ const showPage = (list, page) => {
    }
 }
 
+/************ The addPageLinks() function builds a dynamic section of HTML at the bottom of the page to be used
+ * as a pagination navigation section. Each link is then dynamically assigned a value and displays the corresponding
+ * to a page of items from the list parameter.
+************/
+
 const addPageLinks = (list) => {
    const pageDiv = document.querySelector('.page');
    const paginationDiv = document.createElement('div');
@@ -21,7 +35,6 @@ const addPageLinks = (list) => {
    const paginationUl = document.createElement('ul');
    paginationDiv.appendChild(paginationUl);
    let numberOfPages = list.length / itemsPerPage;
-   
    for (let i = 0; i < numberOfPages; i++) {
       const paginationLi = document.createElement('li');
       const paginationLink = document.createElement('a');
@@ -29,11 +42,8 @@ const addPageLinks = (list) => {
       paginationLink.innerHTML = `${i + 1}`
       paginationLi.appendChild(paginationLink);
       paginationUl.appendChild(paginationLi);
-      
    }
-
    paginationUl.firstChild.firstChild.className = 'active';
-   console.log(paginationUl.firstChild.firstChild);
    const paginationLinks = paginationUl.querySelectorAll('a');
    for (i = 0; i < paginationLinks.length; i++) {
       paginationLinks[i].addEventListener('click', (e) => {
@@ -45,9 +55,13 @@ const addPageLinks = (list) => {
             isClicked.className = 'active';
             showPage(list, isClicked.textContent);
          }
-         
          });
       }
    }
+
+   /************ A call to both functions, passing in studentList as the list and 1 as the page on which the display
+    * should begin. 
+************/
+
 showPage(studentList, 1);
 addPageLinks(studentList);
