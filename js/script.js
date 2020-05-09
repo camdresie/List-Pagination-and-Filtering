@@ -1,10 +1,13 @@
-/************ Global variables are declared. The only two global variable needed are the selected list and the number of items
-* to be displayed on each page. 
+/************ Global variables are declared. The only two global variable 
+ * needed are the selected list and the number of items to be displayed on each page. 
 ************/
 
 const studentList = document.querySelectorAll('.student-item');
 const itemsPerPage = 10;
 
+/************ This section creates a searchbar and appends it to 
+ * the DOM.
+************/
 
 const headerDiv = document.querySelector('.page-header');
 const searchDiv = document.createElement('div');
@@ -19,6 +22,10 @@ searchButton.textContent = 'Search';
 searchButton.className = 'searchButton';
 searchDiv.appendChild(searchButton);
 
+/************ The following two event listeners allow users to type in a name and search for that student either
+ * by hitting the "Search" button or the program will dynamically search as they type. 
+************/
+
 searchButton.addEventListener('click', (e) => {
    event.preventDefault();
    performSearch();
@@ -28,6 +35,12 @@ searchInput.addEventListener('keyup', (e) => {
    event.preventDefault();
    performSearch();
 });
+
+/************ This is the function utilized by the searchButton and searchInput event listeners to search the 
+ * user's input in the search box against the names that appear in the studentList. If the name or part of the 
+ * name is in studentList, all other items are hidden from view and only matching items are shown. The beginning
+ * of the function ensures that the pagination at the bottom is overwritten for each search.
+************/
 
 const performSearch = () => {
    const paginationDivs = document.querySelectorAll('.pagination');
@@ -48,9 +61,15 @@ const performSearch = () => {
          studentProfile.style.display = 'none';
       } 
    }
-   if (searchResults === null) {
+   if (searchResults.length === 0) {
+      const noResults = document.querySelectorAll('.no-results');
+      for (i=0; i<noResults.length; i++) {
+         const noResult = noResults[i]
+         noResult.style.display = 'none';
+      }
       const studentDiv = document.querySelector('.student-list');
       const noResultsLi = document.createElement('li');
+      noResultsLi.className = 'no-results'
       studentDiv.appendChild(noResultsLi);
       const noResultsH3 = document.createElement('h3');
       noResultsH3.textContent = 'There are no matches for your search. Please try again.'
