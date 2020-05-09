@@ -24,6 +24,10 @@ searchButton.addEventListener('click', (e) => {
    performSearch();
 });
 
+searchInput.addEventListener('keyup', (e) => {
+   event.preventDefault();
+   performSearch();
+});
 
 const performSearch = () => {
    const search = searchInput.value.toLowerCase();
@@ -38,10 +42,11 @@ const performSearch = () => {
          studentProfile.style.display = 'none';
       }
    }
-   showPage(searchResults, 1);
    addPageLinks(searchResults);
-   
-}
+   const paginationDivs = document.querySelector('.pagination');
+   paginationDivs.style.display = 'none';
+   }
+
 
 
 /************ The showPage() function takes in a list and the initial page as its parameters. The function then 
