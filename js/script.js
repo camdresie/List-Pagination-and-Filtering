@@ -63,7 +63,7 @@ const performSearch = () => {
    }
 
    /************ The below part of the performSearch function checks to see if no results are found. If they aren't,
-    * a message is logged that tells a user that no students match their search and that they need to try again. 
+    * a message is logged that tells a user that no students match their search and that they need to try again.
 ************/
 
    if (searchResults.length === 0) {
@@ -82,8 +82,6 @@ const performSearch = () => {
    }
    addPageLinks(searchResults);
 }
-
-
 
 /************ The showPage() function takes in a list and the initial page as its parameters. The function then 
  * defines a start index and end index dynamically using the provided parameters. The function then displays 
