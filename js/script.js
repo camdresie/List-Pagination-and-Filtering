@@ -4,8 +4,6 @@
 
 const studentList = document.querySelectorAll('.student-item');
 const itemsPerPage = 10;
-const nameList = 
-
 
 
 const headerDiv = document.querySelector('.page-header');
@@ -21,23 +19,32 @@ searchButton.textContent = 'Search';
 searchButton.className = 'searchButton';
 searchDiv.appendChild(searchButton);
 
-
-const searchValue = searchInput.value;
-
-const performSearch = (search, students) => {
-   for (let i = 0; i < students.length; i++) {
-      if (searchInput.value.length !== 0 && students[i].textContent.toLowerCase().includes(search.value.toLowerCase())) {
-         students[i].style.display = 'block';
-      } else {
-         students[i].style.display = 'none';
-      }
-   }
-}
-
 searchButton.addEventListener('click', (e) => {
    event.preventDefault();
-   performSearch(searchValue, nameList);
+   performSearch();
 });
+
+
+const performSearch = () => {
+   const search = searchInput.value.toLowerCase();
+   console.log(search);
+   const searchResults = [];
+   for (let i = 0; i < studentList.length; i++) {
+      const studentProfile = studentList[i];
+      const studentName = studentProfile.querySelector('h3').textContent;
+      console.log(studentName);
+      if (studentName.includes(search)) {
+         searchResults.push(studentProfile);
+         studentProfile.style.display = 'block';
+      } else {
+         studentProfile.style.display = 'none';
+      }
+   }
+   showPage(searchResults, 1);
+   addPageLinks(searchResults);
+   
+}
+
 
 /************ The showPage() function takes in a list and the initial page as its parameters. The function then 
  * defines a start index and end index dynamically using the provided parameters. The function then displays 
