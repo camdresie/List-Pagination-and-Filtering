@@ -30,6 +30,12 @@ searchInput.addEventListener('keyup', (e) => {
 });
 
 const performSearch = () => {
+   const paginationDivs = document.querySelectorAll('.pagination');
+   for (i=0; i<paginationDivs.length; i++) {
+      paginationDiv = paginationDivs[i]
+      paginationDiv.style.display = 'none';
+   }
+   paginationDiv.style.display = 'none';
    const search = searchInput.value.toLowerCase();
    const searchResults = [];
    for (let i = 0; i < studentList.length; i++) {
@@ -43,8 +49,6 @@ const performSearch = () => {
       }
    }
    addPageLinks(searchResults);
-   const paginationDivs = document.querySelector('.pagination');
-   paginationDivs.style.display = 'none';
    }
 
 
