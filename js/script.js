@@ -46,10 +46,20 @@ const performSearch = () => {
          studentProfile.style.display = 'block';
       } else {
          studentProfile.style.display = 'none';
+      } 
+   }
+   if (searchResults === []) {
+      const noResults = () => {
+         const studentDiv = document.querySelector('.student-list');
+         const noResultsLi = document.createElement('li');
+         studentDiv.appendChild(noResultsLi);
+         const noResultsH3 = document.createElement('h3');
+         noResultsH3.textContent = 'There are no matches for your search. Please try again.'
+         noResultsLi.appendChild(noResultsH3);
+         }
       }
-   }
    addPageLinks(searchResults);
-   }
+}
 
 
 
