@@ -27,12 +27,10 @@ searchButton.addEventListener('click', (e) => {
 
 const performSearch = () => {
    const search = searchInput.value.toLowerCase();
-   console.log(search);
    const searchResults = [];
    for (let i = 0; i < studentList.length; i++) {
       const studentProfile = studentList[i];
       const studentName = studentProfile.querySelector('h3').textContent;
-      console.log(studentName);
       if (studentName.includes(search)) {
          searchResults.push(studentProfile);
          studentProfile.style.display = 'block';
