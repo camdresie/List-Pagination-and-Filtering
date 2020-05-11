@@ -80,6 +80,7 @@ const performSearch = () => {
       noResultsH3.textContent = 'There are no matches for your search. Please try again.'
       noResultsLi.appendChild(noResultsH3);
    }
+   showPage(searchResults, 1)
    addPageLinks(searchResults);
 }
 
